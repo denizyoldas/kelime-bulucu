@@ -1,32 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import LetterInput from './components/letter-input'
+import List from './components/list'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [length, setLength] = useState(0)
+  const [letters, setLetters] = useState<string[]>([])
+  const [sLength, setSLength] = useState(0)
+  const [sLetters, setSLetters] = useState<string[]>([])
+
+  const searchHandler = () => {
+    setSLength(length)
+    setSLetters(letters)
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="bg-slate-700 text-white w-screen h-screen">
+      length
+      <input
+        className="border rounded-sm p-2 text-black"
+        type="text"
+        value={length}
+        onChange={e => setLength(+e.target.value)}
+      />
+      <LetterInput length={length} />
+      <button
+        onClick={searchHandler}
+        className="bg-slate-400 py-2 px-4 rounded-md"
+      >
+        Search
+      </button>
+      <List length={sLength} letters={sLetters} />
     </div>
   )
 }
