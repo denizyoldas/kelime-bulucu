@@ -12,7 +12,16 @@ const List = ({ length, letters }: Props) => {
   useEffect(() => {
     const words = WORDS.filter(word => word.length === length)
     const fWords = words.filter(word => {
-      return word.split('').some(letter => letters.includes(letter))
+      const wordLetters = word.split('')
+      const blg = []
+      for (let i = 0; i < wordLetters.length; i++) {
+        if (letters[i] === wordLetters[i] || letters[i] === '?') {
+          blg.push(true)
+        } else {
+          blg.push(false)
+        }
+      }
+      return !blg.includes(false)
     })
     setFilteredWords(fWords)
   }, [length, letters])

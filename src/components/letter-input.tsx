@@ -3,7 +3,7 @@ import React from 'react'
 interface Props {
   length: number
   isActive?: boolean
-  onChange?: (e: string) => void
+  onChange?: (e: string[]) => void
 }
 
 const LetterInput = ({ length, onChange, isActive = false }: Props) => {
@@ -17,17 +17,17 @@ const LetterInput = ({ length, onChange, isActive = false }: Props) => {
     const newLetters = [...letters]
     newLetters[index] = value
     setLetters(newLetters)
-    onChange && onChange(value)
+    onChange && onChange(newLetters)
   }
 
   return (
-    <div>
+    <div className="w-full h-full flex gap-3 items-center">
       {Array.from({ length }, (_, i) => (
         <input
           key={i}
           type="text"
           value={letters[i]}
-          className="w-4 h-4 rounded-sm border p-2 text-black"
+          className="w-8 h-8 rounded-md border border-black p-2 text-black"
           onChange={e => {
             changeHandler(e, i)
           }}
