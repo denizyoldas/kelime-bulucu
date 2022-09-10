@@ -12,6 +12,7 @@ Harf sayısına 5 yazıyoruz. Ardından gelen kutulardan ilkine d ikincisine a k
 
 ## Folder Structure
 
+```
 .
 ├── README.md
 ├── LICENSE
@@ -25,6 +26,7 @@ Harf sayısına 5 yazıyoruz. Ardından gelen kutulardan ilkine d ikincisine a k
 │ └── data
 │ └── kelimeler.json
 └── .gitignore
+```
 
 ## License
 
