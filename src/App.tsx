@@ -40,7 +40,7 @@ function App() {
           onClick={searchHandler}
           className="bg-slate-400 py-2 px-4 rounded-md text-white"
         >
-          Search
+          Bul
         </button>
         <div>
           <h4>Bulunan Kelimeler</h4>

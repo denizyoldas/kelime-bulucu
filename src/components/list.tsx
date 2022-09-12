@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import WORDS from '../data/kelimeler.json'
+import ListItem from './list-item'
 
 interface Props {
   length: number
@@ -27,13 +28,14 @@ const List = ({ length, letters }: Props) => {
   }, [length, letters])
 
   return (
-    <div>
-      <ul className="h-56 overflow-y-auto">
+    <>
+      <h4>Bulunan kelime sayısı: {filteredWords.length}</h4>
+      <div className="h-56 overflow-y-auto">
         {filteredWords.map((word, i) => (
-          <li key={`${word}-${i}`}>{word}</li>
+          <ListItem key={`${word}-${i}`} text={word} />
         ))}
-      </ul>
-    </div>
+      </div>
+    </>
   )
 }
 
