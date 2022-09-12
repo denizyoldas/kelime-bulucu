@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import LetterBox from './letter-box'
 
 interface Props {
   length: number
@@ -7,30 +8,31 @@ interface Props {
 }
 
 const LetterInput = ({ length, onChange, isActive = false }: Props) => {
-  const [letters, setLetters] = React.useState<string[]>([])
+  const [letters, setLetters] = useState<string[]>([])
+  const [active, setActive] = useState(0)
 
-  const changeHandler = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const { value } = e.target
+  const changeHandler = (letter: string, index: number) => {
     const newLetters = [...letters]
-    newLetters[index] = value
+    newLetters[index] = letter
     setLetters(newLetters)
+    setActive(index + 1)
     onChange && onChange(newLetters)
+  }
+
+  const onClick = (i: number) => {
+    setActive(i)
   }
 
   return (
     <div className="w-full h-full flex gap-3 items-center">
       {Array.from({ length }, (_, i) => (
-        <input
+        <LetterBox
           key={i}
-          type="text"
-          value={letters[i]}
-          className="w-8 h-8 rounded-md border border-black p-2 text-black"
-          onChange={e => {
-            changeHandler(e, i)
+          onClick={() => {
+            onClick(i)
           }}
+          onChange={e => changeHandler(e, i)}
+          active={active === i}
         />
       ))}
     </div>
